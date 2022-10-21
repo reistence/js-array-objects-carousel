@@ -92,15 +92,15 @@ startBtn.addEventListener("click", function () {
   }, 3000);
 });
 
-pauseBTn.addEventListener("click", function () {
-  clearInterval(autoplayTime);
-  clearInterval(reversePlayTime);
-});
-
 reverseBTn.addEventListener("click", function () {
   reversePlayTime = setInterval(() => {
     showPrev(gameCardsArray, gameThumbsArray);
   }, 3000);
+});
+
+pauseBTn.addEventListener("click", function () {
+  clearInterval(autoplayTime);
+  clearInterval(reversePlayTime);
 });
 
 // FUNCTIONS
