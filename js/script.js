@@ -75,16 +75,31 @@ for (let i = 0; i < gameThumbsArray.length; i++) {
   const thisThumbImg = gameThumbsArray[i];
   thisThumbImg.addEventListener("click", () => {
     showThisImg(gameCardsArray, gameThumbsArray, i);
-    // console.log(thisThumbImg);
-    // gameCardsArray[sliderCurrentPosition].classList.remove("active");
-    // gameThumbsArray[sliderCurrentPosition].classList.remove("active-thumb");
-    // // merge the index value
-    // sliderCurrentPosition = i;
-    // // add active
-    // gameCardsArray[sliderCurrentPosition].classList.add("active");
-    // gameThumbsArray[sliderCurrentPosition].classList.add("active-thumb");
   });
 }
+
+const startBtn = document.getElementById("start");
+const pauseBTn = document.getElementById("pause");
+
+const reverseBTn = document.getElementById("reverse");
+
+let autoplayTime;
+
+startBtn.addEventListener("click", function () {
+  autoplayTime = setInterval(() => {
+    showNext(gameCardsArray, gameThumbsArray);
+  }, 3000);
+});
+
+pauseBTn.addEventListener("click", function () {
+  clearInterval(autoplayTime);
+});
+
+reverseBTn.addEventListener("click", function () {
+  autoplayTime = setInterval(() => {
+    showPrev(gameCardsArray, gameThumbsArray);
+  }, 3000);
+});
 
 // FUNCTIONS
 /**
