@@ -84,6 +84,7 @@ const pauseBTn = document.getElementById("pause");
 const reverseBTn = document.getElementById("reverse");
 
 let autoplayTime;
+let reversePlayTime;
 
 startBtn.addEventListener("click", function () {
   autoplayTime = setInterval(() => {
@@ -93,10 +94,11 @@ startBtn.addEventListener("click", function () {
 
 pauseBTn.addEventListener("click", function () {
   clearInterval(autoplayTime);
+  clearInterval(reversePlayTime);
 });
 
 reverseBTn.addEventListener("click", function () {
-  autoplayTime = setInterval(() => {
+  reversePlayTime = setInterval(() => {
     showPrev(gameCardsArray, gameThumbsArray);
   }, 3000);
 });
