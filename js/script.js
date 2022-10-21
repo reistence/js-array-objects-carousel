@@ -63,30 +63,74 @@ const nextBtn = document.getElementById("next-btn");
 let sliderCurrentPosition = 0;
 
 nextBtn.addEventListener("click", () => {
-  showNext(gameCardsArray, gameThumbsArray, sliderCurrentPosition);
-  console.log(sliderCurrentPosition);
+  showNext(gameCardsArray, gameThumbsArray);
 });
-// {
-//   gameCardsArray[sliderCurrentPosition].classList.remove("active");
-//   gameThumbsArray[sliderCurrentPosition].classList.remove("active-thumb");
-//   if (sliderCurrentPosition < gameCardsArray.length - 1) {
-//     sliderCurrentPosition++;
-//   } else {
-//     sliderCurrentPosition = 0;
-//   }
-//   gameCardsArray[sliderCurrentPosition].classList.add("active");
-//   gameThumbsArray[sliderCurrentPosition].classList.add("active-thumb");
-// });
+
+prevBtn.addEventListener("click", () => {
+  showPrev(gameCardsArray, gameThumbsArray);
+});
+
+// clickable game-thumb
+for (let i = 0; i < gameThumbsArray.length; i++) {
+  const thisThumbImg = gameThumbsArray[i];
+  thisThumbImg.addEventListener("click", () => {
+    showThisImg(gameCardsArray, gameThumbsArray, i);
+    // console.log(thisThumbImg);
+    // gameCardsArray[sliderCurrentPosition].classList.remove("active");
+    // gameThumbsArray[sliderCurrentPosition].classList.remove("active-thumb");
+    // // merge the index value
+    // sliderCurrentPosition = i;
+    // // add active
+    // gameCardsArray[sliderCurrentPosition].classList.add("active");
+    // gameThumbsArray[sliderCurrentPosition].classList.add("active-thumb");
+  });
+}
 
 // FUNCTIONS
-function showNext(array1, array2, index) {
-  array1[index].classList.remove("active");
-  array2[index].classList.remove("active-thumb");
-  if (index < array1.length - 1) {
-    index++;
+/**
+ * Description: removes active class to the current element of arrays
+ * at index sliderCurrentPosition and adds it to the next element of the arrays.
+ * If sliderCurrentPosition is at the end of the arrays, goes back to the index 0 element.
+ * @param {array} array1
+ * @param {array} array2
+ */
+function showNext(array1, array2) {
+  array1[sliderCurrentPosition].classList.remove("active");
+  array2[sliderCurrentPosition].classList.remove("active-thumb");
+  if (sliderCurrentPosition < array1.length - 1) {
+    sliderCurrentPosition++;
   } else {
-    index = 0;
+    sliderCurrentPosition = 0;
   }
-  array1[index].classList.add("active");
-  array2[index].classList.add("active-thumb");
+  array1[sliderCurrentPosition].classList.add("active");
+  array2[sliderCurrentPosition].classList.add("active-thumb");
+}
+
+/**
+ * Description: removes active class to the current element of arrays
+ * at index sliderCurrentPosition and adds it to the previous element of the arrays.
+ * If sliderCurrentPosition is at the beginning of the arrays, goes back to the last index element.
+ * @param {array} array1
+ * @param {array} array2
+ */
+function showPrev(array1, array2) {
+  array1[sliderCurrentPosition].classList.remove("active");
+  array2[sliderCurrentPosition].classList.remove("active-thumb");
+  if (sliderCurrentPosition > 0) {
+    sliderCurrentPosition--;
+  } else {
+    sliderCurrentPosition = array1.length - 1;
+  }
+  array1[sliderCurrentPosition].classList.add("active");
+  array2[sliderCurrentPosition].classList.add("active-thumb");
+}
+
+function showThisImg(array1, array2, i) {
+  array1[sliderCurrentPosition].classList.remove("active");
+  array2[sliderCurrentPosition].classList.remove("active-thumb");
+  // merge the index value
+  sliderCurrentPosition = i;
+  // add active
+  array1[sliderCurrentPosition].classList.add("active");
+  array2[sliderCurrentPosition].classList.add("active-thumb");
 }

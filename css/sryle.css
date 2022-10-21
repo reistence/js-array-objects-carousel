@@ -80,6 +80,8 @@ body {
   object-fit: cover;
   height: 150px;
   width: calc(100% / 5);
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .game-thumb img {
@@ -98,6 +100,7 @@ body {
   background-color: rgba(0, 0, 0, 0.296);
   color: white;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 #prev-btn {
@@ -118,4 +121,5 @@ body {
 
 .active-thumb {
   border: 1px solid yellow;
+  opacity: 1;
 }
