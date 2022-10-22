@@ -85,22 +85,35 @@ const reverseBTn = document.getElementById("reverse");
 
 let autoplayTime;
 let reversePlayTime;
+let playState = false;
 
 startBtn.addEventListener("click", function () {
   autoplayTime = setInterval(() => {
-    showNext(gameCardsArray, gameThumbsArray);
+    playState = true;
+    if (playState === true) {
+      showNext(gameCardsArray, gameThumbsArray);
+    }
+
+    console.log(playState);
   }, 3000);
 });
 
 reverseBTn.addEventListener("click", function () {
   reversePlayTime = setInterval(() => {
-    showPrev(gameCardsArray, gameThumbsArray);
+    playState = true;
+    if (playState === true) {
+      showPrev(gameCardsArray, gameThumbsArray);
+    }
+
+    console.log(playState);
   }, 3000);
 });
 
 pauseBTn.addEventListener("click", function () {
+  playState = false;
   clearInterval(autoplayTime);
   clearInterval(reversePlayTime);
+  console.log(playState);
 });
 
 // FUNCTIONS
