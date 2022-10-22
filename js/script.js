@@ -80,11 +80,12 @@ for (let i = 0; i < gameThumbsArray.length; i++) {
 
 const startBtn = document.getElementById("start");
 const pauseBTn = document.getElementById("pause");
-
 const reverseBTn = document.getElementById("reverse");
+const shuffleBtn = document.getElementById("shuffle");
 
 let autoplayTime;
 let reversePlayTime;
+let shufflePlayTime;
 let playState = false;
 
 startBtn.addEventListener("click", function () {
@@ -114,6 +115,12 @@ pauseBTn.addEventListener("click", function () {
   clearInterval(autoplayTime);
   clearInterval(reversePlayTime);
   console.log(playState);
+});
+
+shuffleBtn.addEventListener("click", function () {
+  playState = true;
+  console.log(playState);
+  showRnd(gameCardsArray, gameThumbsArray);
 });
 
 // FUNCTIONS
@@ -155,12 +162,36 @@ function showPrev(array1, array2) {
   array2[sliderCurrentPosition].classList.add("active-thumb");
 }
 
+/**
+ * Description: set the index to whatever thumb-img it's clicked, and
+ * remove and add active/active-thumb accordingly to the
+ * clicked thumb-img
+ * @param {array} array1
+ * @param {array} array2
+ * @param {index} i
+ */
 function showThisImg(array1, array2, i) {
   array1[sliderCurrentPosition].classList.remove("active");
   array2[sliderCurrentPosition].classList.remove("active-thumb");
   // merge the index value
   sliderCurrentPosition = i;
   // add active
+  array1[sliderCurrentPosition].classList.add("active");
+  array2[sliderCurrentPosition].classList.add("active-thumb");
+}
+
+/**
+ * Description: set the index to rnd integer in renge 0-4 inclusive;
+ * removing and addding active/activw-thumb to the element
+ *  at that rnd integer index
+ * @param {array} array1
+ * @param {array} array2
+ */
+function showRnd(array1, array2) {
+  array1[sliderCurrentPosition].classList.remove("active");
+  array2[sliderCurrentPosition].classList.remove("active-thumb");
+  sliderCurrentPosition = Math.floor(Math.random() * (4 - 0 + 1) + 0);
+
   array1[sliderCurrentPosition].classList.add("active");
   array2[sliderCurrentPosition].classList.add("active-thumb");
 }
